@@ -11,8 +11,10 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
+- [Libraries](#libraries)
+- [Badges](#badges)
 - [License](#license)
+- [Authors](#authors)
 
 ## Requirements
 
