@@ -1,12 +1,10 @@
-# Simple API REST with JWT Auth
+# Bitgune technical test
 
 ## Description
 
-This is a example code of how to buid a JWT authentication API. This APi is connected to [mongodb](https://cloud.mongodb.com/) in cloud.
+This is a example code For Bitgune technical test. This APi is connected to [mongodb](https://cloud.mongodb.com/) in cloud.
 
 ## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -31,7 +29,7 @@ Create .env file from .env.example and set your own credentials
 
     cp .env.example .env
 
-If this is your first time deploying this environment and the database is empty, run this command to populate the database with the required tables and data.
+If this is your first time deploying this environment and the database is empty, run this command to populate the database with the required tables, relations and data.
 
     npm run seed
 
