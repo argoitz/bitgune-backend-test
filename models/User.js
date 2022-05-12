@@ -22,6 +22,9 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "user",
   },
+  lastRequest: {
+    type: Date,
+  },
   date: {
     type: Date,
     default: Date.now,
