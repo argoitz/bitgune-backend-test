@@ -31,6 +31,10 @@ Create .env file from .env.example and set your own credentials
 
     cp .env.example .env
 
+If this is your first time deploying this environment and the database is empty, run this command to populate the database with the required tables and data.
+
+    npm run seed
+
 Run this command to start server in **dev enviroment**. This command will use _nodemon_ to reload server when changues are detected.
 
     npm run dev
@@ -129,7 +133,7 @@ SOFTWARE.
 
 ## Badges
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
+![badmath](https://img.shields.io/github/languages/top/argoitz/node-simple-jwt-auth)
 
 ## Authors
 
