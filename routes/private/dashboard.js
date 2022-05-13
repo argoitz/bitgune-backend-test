@@ -66,13 +66,15 @@ router.post("/request-form", async (req, res) => {
     });
 
   //Check last Request > 24h
-  const lastReqTime = calculateLastRequestTime(user.lastRequest);
-  if (lastReqTime.hoursBetweenDates < 24) {
-    return res.status(403).json({
-      error:
-        "You are not allowed to submit a new form, please try again in " +
-        convertMsToHM(lastReqTime.msForNewRequest),
-    });
+  if (user.lastRequest) {
+    const lastReqTime = calculateLastRequestTime(user.lastRequest);
+    if (lastReqTime.hoursBetweenDates < 24) {
+      return res.status(403).json({
+        error:
+          "You are not allowed to submit a new form, please try again in " +
+          convertMsToHM(lastReqTime.msForNewRequest),
+      });
+    }
   }
 
   // validate form
@@ -103,6 +105,17 @@ router.post("/request-form", async (req, res) => {
   return res
     .status(200)
     .json({ error: null, message: "Form successfully saved" });
+});
+
+// SUPERADMIN ENDPOINTS
+
+router.get("/forms", async (req, res) => {
+  await RequestForm.find({}).exec(function (err, forms) {
+    return res.json({
+      error: err,
+      forms,
+    });
+  });
 });
 
 module.exports = router;

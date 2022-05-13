@@ -5,6 +5,7 @@ const bodyparser = require("body-parser");
 const authRoutes = require("./routes/auth");
 const dashboadRoutes = require("./routes/private/dashboard");
 const verifyToken = require("./middleware/validate-token");
+const PopulateSeeders = require("./seeders/index");
 
 require("dotenv").config();
 
@@ -22,12 +23,11 @@ app.use(cors(corsOptions));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
-// DB Conexion
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.tyxmr.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
-mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log(`Connected to ${process.env.DBNAME} db`))
-  .catch((e) => console.log("error db:", e));
+// MongoDB local CONNETION
+require("./database");
+
+// seeders
+PopulateSeeders();
 
 // Public routes
 app.use("/api/user", authRoutes);

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 //Password hash
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
@@ -11,7 +11,7 @@ const Joi = require("joi");
 const schemaRegister = Joi.object({
   name: Joi.string().min(4).max(255).required(),
   email: Joi.string().min(6).max(255).required().email(),
-  password: Joi.string().min(6).max(1024).required(),
+  password: Joi.string().min(4).max(20).required(),
 });
 
 router.post("/register", async (req, res) => {
@@ -54,7 +54,7 @@ router.post("/register", async (req, res) => {
 //#### LOGIN ENDPOINT ####
 const schemaLogin = Joi.object({
   email: Joi.string().min(6).max(255).required().email(),
-  password: Joi.string().min(6).max(1024).required(),
+  password: Joi.string().min(4).max(20).required(),
 });
 
 router.post("/login", async (req, res) => {
@@ -74,6 +74,7 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign(
     {
       name: user.name,
+      role: user.role,
       id: user._id,
     },
     process.env.TOKEN_SECRET
@@ -81,7 +82,7 @@ router.post("/login", async (req, res) => {
 
   res.header("auth-token", token).json({
     error: null,
-    data: { token },
+    data: { token, userRole: user.role },
   });
 });
 
