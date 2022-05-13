@@ -47,6 +47,10 @@ Run this command to build server in production enviroment.
 
 ## Usage
 
+You can import this collection to test api in your postman:
+
+    https://www.getpostman.com/collections/8de6385fec5d043a2687
+
 Regiter endpoint:
 
     POST REQUEST: http://localhost:3001/api/user/register
