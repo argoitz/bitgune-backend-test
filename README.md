@@ -4,7 +4,7 @@
 
 This is a example code For Bitgune technical test. This APi is connected to [mongodb](https://cloud.mongodb.com/) in cloud.
 
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -23,11 +23,15 @@ This is a example code For Bitgune technical test. This APi is connected to [mon
 
 Clone this repository in your server:
 
-    https://github.com/argoitz/node-simple-jwt-auth.git
+    https://github.com/argoitz/bitgune-backend-test
 
 Create .env file from .env.example and set your own credentials
 
     cp .env.example .env
+
+install all the dependencies
+
+    npm install
 
 If this is your first time deploying this environment and the database is empty, run this command to populate the database with the required tables, relations and data.
 
@@ -71,9 +75,9 @@ Login endpoint:
         }
     }
 
-Then you can access to a private routes setting 'auth-token' header with your token value
+Then you can access to a private routes setting 'auth-token' header with your token value. This route provide form select with types and subtypes.
 
-    GET REQUEST: http://localhost:3001/api/dashboard
+    GET REQUEST: http://localhost:3001/api/dashboard/request-form
 
     Headers:
     {
@@ -83,14 +87,40 @@ Then you can access to a private routes setting 'auth-token' header with your to
     Response:
     {
         "error": null,
-        "data": {
-            "title": "Protected route",
-            "user": {
-                "name": "Your name",
-                "id": "DB Id",
-                "iat": Time at which the JWT token was issued
-            }
+            "types": [
+        {
+            "_id": ...,
+            "name": "Información",
+            "subtypes": [
+                {
+                    "_id": ...,
+                    "name": "Promociones",
+                    "date": "2022-05-12T11:54:12.903Z",
+                },
+            ]
         }
+    }
+
+Form submit endpoint
+POST REQUEST: http://localhost:3001/api/dashboard/request-form
+
+    Request: {
+        name: 'test', //Required
+        surname: 'Test test',
+        email: 'test@test.com', //Required
+        phone: 666555444,
+        birth: '1987-11-15',
+        sex: 'male',
+        type: 'Incidencia Técnica', //Required
+        subtype: 'Instalación', //Required
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
+        terms: true //Required
+    }
+
+    Response:
+    {
+        "error": (if an error occurs in the validation, it will return a message specifying the error),
+        "message": "Form successfully saved"
     }
 
 ## Libraries
@@ -131,7 +161,7 @@ SOFTWARE.
 
 ## Badges
 
-![badmath](https://img.shields.io/github/languages/top/argoitz/node-simple-jwt-auth)
+![badmath](https://img.shields.io/github/languages/top/argoitz/bitgune-backend-test)
 
 ## Authors
 
