@@ -16,8 +16,4 @@ COPY . .
 
 EXPOSE 3001
 
-# ENTRYPOINT ["./startupScript.sh"]
-
-RUN echo "DB POPULATED -> STARTING BACKEND"
-
 CMD ["npm", "start"]

@@ -118,4 +118,20 @@ router.get("/forms", async (req, res) => {
   });
 });
 
+router.delete("/forms/:_id", async (req, res) => {
+  const id = req.params._id;
+
+  const deletedForm = await RequestForm.findByIdAndDelete(id);
+
+  if (!deletedForm)
+    res.status(403).json({
+      error: "Form doesnt exist.",
+    });
+
+  return res.json({
+    error: null,
+    id,
+  });
+});
+
 module.exports = router;
